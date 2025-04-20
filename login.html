@@ -1,0 +1,191 @@
+<!DOCTYPE html> <!-- Document ko HTML format mein define kiya -->
+<html lang="en"> <!-- Language ko English set kiya -->
+<head>
+    <meta charset="UTF-8"> <!-- Character encoding ko set kiya, jo bhi characters ya symbols ho, unhe properly display kar sake -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Mobile devices ke liye viewport set kiya -->
+    <title>Login</title> <!-- Page ka title set kiya -->
+    <style>
+        * {
+            margin: 0; /* Har element ka margin 0 set kiya */
+            padding: 0; /* Har element ka padding 0 set kiya */
+            box-sizing: border-box; /* Box sizing ko border-box set kiya, jisse padding aur border ko include karke width set ho */
+            font-family: 'Poppins', sans-serif; /* Font family ko Poppins set kiya */
+        }
+        body {
+            height: 100vh; /* Body ki height ko 100% of viewport height set kiya */
+            background: linear-gradient(135deg, #f6d365, #fda085); /* Background ko linear gradient se set kiya */
+            display: flex; /* Flexbox layout use kiya body ke andar */
+            justify-content: center; /* Content ko horizontally center kiya */
+            align-items: center; /* Content ko vertically center kiya */
+        }
+        .form-container {
+            width: 350px; /* Form container ki width 350px set kiya */
+            background: white; /* Form ka background white color set kiya */
+            padding: 40px; /* Form ke andar padding set ki */
+            border-radius: 15px; /* Form ke corners ko rounded banaya */
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* Form ko shadow di */
+            text-align: center; /* Text ko center-align kiya */
+            animation: fadeIn 1s ease-in-out; /* Form ko fade-in animation di */
+        }
+        @keyframes fadeIn {
+            from{ opacity: 0; transform: translateY(-20px);} /* Initial state: opacity 0 aur form thoda upar */
+            to { opacity: 1; transform: translateY(0);} /* Final state: opacity 1 aur form normal position par */
+        }
+
+        h2 {
+            text-align: center; /* Title ko center-align kiya */
+            margin-bottom: 20px; /* Bottom margin diya title ke neeche */
+            color: #333; /* Title ka color dark gray set kiya */
+        }
+        label {
+            font-weight: bold; /* Labels ko bold banaya */
+            display: block; /* Labels ko block level element banaya */
+            text-align: left; /* Labels ko left-align kiya */
+        }
+        input {
+            width: 100%; /* Input field ki width 100% ki, taki poora container mein ho */
+            padding: 12px 40px 12px 40px; /* Input field ka padding set kiya, right aur left ke liye space diya */
+            margin-top: 5px; /* Top margin diya input fields ke upar */
+            margin-bottom: 10px; /* Bottom margin diya input fields ke neeche */
+            border: 1px solid #ccc; /* Border ko light gray color set kiya */
+            border-radius: 30px; /* Input field ke corners ko rounded banaya */
+            outline: none; /* Outline ko remove kiya */
+            transition: 0.3s; /* Input field ke hover aur focus state ke liye smooth transition di */
+        }
+        .error {
+            color: red; /* Error message ko red color diya */
+            font-size: 12px; /* Error message ka font size chhota kiya */
+        }
+        .password-wrapper {
+            position: relative; /* Password input ko relative position di, taki icon ko correct position par rakh sake */
+            width: 100%; /* Full width diya password wrapper ko */
+        }
+
+        .password-wrapper input {
+            padding-right: 45px; /* Input field ke right side mein space diya icon ke liye */
+        }
+
+        .toggle-password {
+            position: absolute; /* Icon ko absolute position di input field ke andar */
+            right: 15px; /* Right side par 15px ka gap diya */
+            top: 50%; /* Vertical center align kiya */
+            transform: translateY(-50%); /* Y-axis ke center ko achieve kiya */
+            cursor: pointer; /* Pointer cursor di, jaise hi user icon par hover karein */
+            font-size: 18px; /* Icon ka font size set kiya */
+            user-select: none; /* User ko icon ko select karne se roka */
+        }
+
+        button {
+            width: 100%; /* Button ki width 100% ki */
+            padding: 12px; /* Button ka padding set kiya */
+            border: none; /* Border ko remove kiya */
+            border-radius: 30px; /* Button ke corners ko rounded banaya */
+            background: #fda085; /* Button ka background color set kiya */
+            color: white; /* Button ka text color white set kiya */
+            font-size: 16px; /* Button ka font size set kiya */
+            cursor: pointer; /* Button pe hover karte waqt pointer cursor dikhega */
+            transition: 0.3s; /* Button ke hover effect ke liye smooth transition diya */
+        }
+        button:hover {
+            background: #f6a65f; /* Hover hone par button ka background color change hoga */
+        }
+        .signup-link {
+            margin-top: 10px; /* Sign up link ke upar margin diya */
+        }
+        .signup-link a {
+            color: #f97b0c; /* Sign up link ka color orange set kiya */
+            text-decoration: none; /* Text underline ko remove kiya */
+        }
+        .signup-link a:hover {
+            text-decoration: underline; /* Hover hone par text underline ho jayega */
+        }
+    </style> <!-- Styling ends here -->
+</head>
+<body>
+    <div class="form-container"> <!-- Form container start -->
+
+        <h2>Login</h2> <!-- Login title display -->
+
+        <form id="loginForm">
+
+            <label for="email">Email:</label> <!-- Email label -->
+            <input type="email" id="email" name="email"> <!-- Email input field -->
+            <p class="error" id="emailError"></p> <!-- Error message for invalid email -->
+
+            <label for="password">Password:</label> <!-- Password label -->
+            <div class="password-wrapper"> <!-- Password input wrapper start -->
+                <input type="password" id="password" name="password"> <!-- Password input field -->
+                <span class="toggle-password" onclick="togglePassword()">👁️</span> <!-- Eye icon for showing/hiding password -->
+            </div> <!-- Password input wrapper end -->
+            <p class="error" id="passwordError"></p> <!-- Error message for invalid password -->
+
+            <button type="submit">Login</button> <!-- Submit button -->
+        </form>
+        <p class="signup-link">Not have an account? <a href="registration.html">Sign Up</a></p> <!-- Sign up link -->
+
+    </div> <!-- Form container end -->
+
+    <script> // login script start
+        function redirectToSuccess(event) {
+            event.preventDefault(); // Form ko submit hone se roka
+            window.location.href = 'dashboard.html'; // Login successful hone par user ko dashboard page pe redirect kiya
+        }
+
+        document.getElementById("loginForm").addEventListener("submit", function(event) {
+            let isValid = true; // Flag ko true set kiya
+
+            // Get input values
+            let email = document.getElementById("email").value.trim(); // Email value li
+            let password = document.getElementById("password").value; // Password value li
+
+            // Email validation
+            let emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/; // Email ke format ko validate karne ka pattern
+            if (!email.match(emailPattern)) { // Agar email format match nahi karta
+                document.getElementById("emailError").textContent = "Enter a valid email."; // Error message dikhaya
+                isValid = false; // Flag ko false kiya
+            } else {
+                document.getElementById("emailError").textContent = ""; // Error message ko empty kiya
+            }
+
+            // Password validation
+            if (password.length < 6) { // Agar password 6 characters se kam hai
+                document.getElementById("passwordError").textContent = "Password must be at least 6 characters."; // Error message dikhaya
+                isValid = false; // Flag ko false kiya
+            } else {
+                document.getElementById("passwordError").textContent = ""; // Error message ko empty kiya
+            }
+
+            // Hardcoded login credentials
+            let correctEmail = "user@example.com"; // Correct email ko hardcode kiya
+            let correctPassword = "password123"; // Correct password ko hardcode kiya
+
+            if (email !== correctEmail || password !== correctPassword) { // Agar email ya password galat hai
+                document.getElementById("passwordError").textContent = "Invalid email or password."; // Error message dikhaya
+                isValid = false; // Flag ko false kiya
+            }
+
+            // Agar validation fail ho, form submit nahi hoga
+            if (!isValid) {
+                event.preventDefault(); // Form ko submit hone se roka
+            } else {
+                alert("Login Successful!"); // Agar sab kuch sahi hai to success alert dikhaya
+                redirectToSuccess(event); // Success ke baad dashboard page pe redirect kiya
+            }
+        });
+
+        function togglePassword() {
+            const passwordInput = document.getElementById("password"); // Password input ko access kiya
+            const toggleIcon = document.querySelector(".toggle-password"); // Toggle icon ko access kiya
+
+            if (passwordInput.type === "password") { // Agar password field ka type password hai
+                passwordInput.type = "text"; // Password ko text mein convert kiya
+                toggleIcon.textContent = "🙈"; // Eye icon ko hide icon se replace kiya
+            } else {
+                passwordInput.type = "password"; // Password ko dobara password type mein convert kiya
+                toggleIcon.textContent = "👁️"; // Eye icon ko show icon se replace kiya
+            }
+        }
+    </script> <!-- login script end -->
+
+</body>
+</html>
