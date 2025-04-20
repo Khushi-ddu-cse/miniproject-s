@@ -1,0 +1,64 @@
+body {
+    font-family: Arial, sans-serif; /* Body ke liye Arial font set kiya, agar available na ho to sans-serif font use hoga */
+    margin: 10px; /* Body ke around margin set kiya, thoda space chhoda */
+    padding: 0; /* Body ke andar padding ko 0 set kiya */
+    background: linear-gradient(135deg, #f6d365, #fda085); /* Gradient background added */
+    text-align: center; /* Body ka text center align kiya */
+}
+
+.header {
+    text-align: center; /* Header ka text center align kiya */
+    background-color: #007bff; /* Header ka background color blue set kiya (#007bff) */
+    color: white; /* Text color ko white set kiya */
+    padding: 20px; /* Header ke andar padding di 20px */
+    font-size: 24px; /* Font size ko 24px set kiya */
+}
+
+.navbar {
+    display: flex; /* Navbar ko flexbox layout diya, jisse items ko horizontally arrange kiya ja sake */
+    background: rgb(108, 241, 6); /* Navbar ka background color set kiya ek green shade se (rgb(108, 241, 6)) */
+    padding: 15px; /* Navbar ke andar padding di 15px */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Navbar ko soft shadow diya, thoda depth effect */
+    border-radius: 10px; /* Navbar ke corners ko rounded banaya */
+    justify-content: center; /* Navbar items ko center align kiya */
+}
+
+.nav-item {
+    text-align: center; /* Navbar items ka text center align kiya */
+    padding: 10px 20px; /* Navbar items ko 10px top-bottom aur 20px left-right padding di */
+    cursor: pointer; /* Navbar items pe cursor ko pointer banaya, taaki user ko pata chale ki yeh clickable hain */
+    transition: 0.3s; /* Navbar items par hover karne par transition effect diya 0.3 seconds ke liye */
+    color: #090909; /* Text color ko dark gray set kiya (#090909) */
+    display: flex; /* Navbar items ko flex layout diya */
+    flex-direction: column; /* Navbar items ko vertical (column) arrange kiya */
+    align-items: center; /* Navbar items ko center align kiya horizontally */
+}
+
+.nav-item span {
+    display: inline-block; /* Span ko inline-block banaya, taaki uska height aur width control kiya ja sake */
+    background: white; /* Span ka background color white set kiya */
+    padding: 5px 10px; /* Span ke andar padding di 5px top-bottom aur 10px left-right */
+    border-radius: 5px; /* Span ke corners ko rounded banaya */
+    border: 2px solid #007bff; /* Span ko blue border diya (#007bff) */
+    font-weight: bold; /* Span ke text ko bold kiya */
+    margin-top: 5px; /* Span ke upar 5px margin diya */
+}
+
+.nav-item:hover {
+    color: #007bff; /* Hover hone par navbar item ka text color blue (#007bff) ho jayega */
+    transform: scale(1.1); /* Zoom effect on hover */
+}
+
+.nav-item span:hover {
+    background: #007bff; /* Hover effect on text */
+    color: white;
+}
+
+.container {
+    max-width: 500px; /* Container ki max width ko 500px tak limit kiya */
+    margin: auto; /* Container ko horizontally center align kiya */
+    background: white; /* Container ka background color white set kiya */
+    padding: 20px; /* Container ke andar padding di 20px */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Container ko soft shadow diya, jisse thoda depth effect mile */
+    border-radius: 10px; /* Container ke corners ko rounded banaya */
+}
