@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Travel Smart</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            background-color: antiquewhite;
+        }
+        .contact-section {
+            padding: 40px 20px;
+        }
+        .contact-form {
+            max-width: 500px;
+            margin: 0 auto;
+            text-align: left;
+        }
+        .form-input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+        .form-textarea {
+            height: 150px;
+        }
+        .btn {
+            background: #ff4500;
+            padding: 10px 20px;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        .developer-info {
+            margin-top: 30px;
+            text-align: center;
+        }
+        .developer-info h3 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        .developer-container {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+        .developer {
+            width: 250px;
+            text-align: center;
+            padding: 10px;
+            border-radius: 10px;
+        }
+        .developer img {
+            width: 100%;
+            max-width: 150px;
+            border-radius: 50%;
+            margin-bottom: 10px;
+        }
+        .caption {
+            font-size: 16px;
+        }
+        footer {
+            background: #222;
+            color: white;
+            padding: 10px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Contact Section -->
+    <section class="contact-section">
+        <h1>Contact Us</h1>
+        <p>Have any questions or need assistance? We're here to help!</p>
+
+        <!-- Contact Form -->
+        <div class="contact-form">
+            <form action="#" method="POST">
+                <input type="text" class="form-input" placeholder="Your Name" name="name" required>
+                <input type="email" class="form-input" placeholder="Your Email" name="email" required>
+                <textarea class="form-input form-textarea" placeholder="Your Message" name="message" required></textarea>
+                <button type="submit" class="btn" onclick="validateForm()">Send Message</button>
+            </form>
+        </div>
+
+        <!-- Contact Details -->
+        <div>
+            <h3>Our Office</h3>
+            <p>Address: DDU, Gorakhpur, India</p>
+            <p>Email: contact@travelsmart.com</p>
+            <p>Phone: +91 123 456 7890</p>
+        </div>
+
+        <!-- Social Media Links -->
+        <div>
+            <h3>Follow Us</h3>
+            <img src = "insta-logo.jpg"> <a href="#">Facebook</a> | <img src = "Twitter-logo.jpg"> <a href="#">Twitter</a> | <img src = "Instagram-logo.jpg"> <a href="#">Instagram</a>
+        </div>
+        <div class="developer-info">
+        <h3>Website Development Team</h3>
+        
+        <div class="developer-container">
+            <div class="developer">
+                <img src="Khushi.jpg" alt="Frontend Developer">
+                <p><strong>Frontend Development</strong></p>
+                <p class="caption">Khushi Kumari - HTML, CSS, JavaScript </p>
+            </div>
+    
+            <div class="developer">
+                <img src="Ankita.jpg" alt="Database Developer">
+                <p><strong>Database Management</strong></p>
+                <p class="caption">Ankita Yadav - MySQL, MongoDB</p>
+            </div>
+
+        </div>
+    
+        <div class="developer-container">
+            <div class="developer">
+                <img src="Peeyush.jpg" alt="Backend Developer">
+                <p><strong>Backend Development</strong></p>
+                <p class="caption">Peeyush Singh - Node.js, Express.js</p>
+            </div>
+            
+            <div class="developer">
+                <img src="Vikas.jpg" alt="Backend Developer">
+                <p><strong>Backend Development</strong></p>
+                <p class="caption">Vikas Yadav - Node.js, Express.js</p>
+            </div>
+
+        </div>
+        </div>
+            
+    </section>
+
+    <script>
+        function validateForm() {
+            const email = document.getElementById("email").value;
+            const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.(com|in)$/;
+
+            if (!emailPattern.test(email)) {
+                alert("Please enter a valid email address.");
+                return false;
+            }
+        };
+        
+    </script>
+
+</body>
+</html>

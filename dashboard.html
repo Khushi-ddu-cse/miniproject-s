@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - ABC Tour and Travel Ltd.</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="header">Welcome to ABC Tour and Travel Ltd.</div>
+
+     <div class="navbar">
+
+        <div class ="nav-item" onclick="redirectToPage('Home.html')">
+            <span>Home</span>
+        </div>
+
+        <div class="nav-item" onclick="redirectToPage('Destinations.html')">
+            <span>Destinations</span>
+        </div>
+
+        <div class="nav-item" onclick="redirectToPage('Hotels.html')">
+            <span>Hotels</span>
+        </div>
+
+        <div class="nav-item" onclick="redirectToPage('Pricing.html')">
+            <span>Pricing</span> 
+        </div>
+
+        <div class="nav-item" onclick="redirectToPage('Review.html')">
+            <span>Review</span>
+        </div>
+
+        <div class="nav-item" onclick="redirectToPage('Contact.html')">
+            <span>Contact</span>
+        </div>
+        
+        <div class="nav-item" onclick="confirmLogout()">
+            <span>Logout</span>
+        </div>
+    </div>
+
+    <script> // Page redirection script 
+        function redirectToPage(page) {
+            window.location.href = page;  // Redirects in the same tab
+        }
+    </script>
+    
+    <script> // Logout script 
+
+        // FULL LOG OUT PROCESS IN THIS SCRIPT
+
+        function confirmLogout() {
+        let confirmAction = confirm("Are you sure you want to log out?");
+        if (confirmAction) {
+            // Clear session storage and mark logout in local storage
+            sessionStorage.clear(); 
+            localStorage.setItem("loggedOut", "true"); // Mark logout status
+
+            // Redirect to the Index
+            window.location.href = "index.html"; 
+        }
+    }
+
+    // Prevent going back after logout
+    window.onload = function () {
+        if (localStorage.getItem("loggedOut") === "true") {
+            localStorage.removeItem("loggedOut"); // Remove logout flag
+            window.location.replace("intro page.html"); // Redirect to intro page
+        }
+
+        // Prevent going back using the back button
+        history.pushState(null, null, location.href);
+        window.onpopstate = function () {
+            alert("You have been logged out. Redirecting to the intro page.");
+            window.location.replace("intro page.html"); // Redirect to intro page
+        }
+    }
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Page</title>
+    <style>
+        /* Page ka basic styling */
+        body {
+            font-family: Arial, sans-serif; /* Font set kiya gaya */
+            background: linear-gradient(135deg, #f6d365, #fda085); /* Gradient background */
+            justify-content: center; /* Center kar raha hai content ko horizontally */
+            align-items: center; /* Vertically center kar raha hai content ko */
+            display: flex; /* Flexbox layout use kar rahe hain */
+            height: 100vh; /* Full height of the viewport */
+            margin: 0; /* Default margin hata diya */
+            padding: 20px; /* Page ko padding di */
+        }
+
+        .form-container {
+            background-color: white; /* Form ka background white hoga */
+            padding: 20px; /* Form ke andar padding di gayi hai */
+            border-radius: 10px; /* Rounded corners for the form */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Soft shadow di gayi hai */
+            width: 100%; /* Form ka width full ho gaya */
+            max-width: 400px; /* Maximum width of form set kiya gaya */
+        }
+
+        .form-container h2 {
+            text-align: center; /* Heading ko center align kiya gaya */
+            color: #333; /* Dark grey color for heading */
+        }
+
+        label {
+            font-weight: bold; /* Label ko bold banaya gaya */
+            display: block; /* Label ko full line par dikhaya gaya */
+            text-align: left; /* Left align kiya gaya label ko */
+        }
+
+        input, select {
+            width: 100%; /* Inputs ko full width diya gaya */
+            padding: 10px; /* Inputs ke andar padding di gayi */
+            margin: 5px -7px; /* Inputs ke beech space diya gaya */
+            border: 1px solid #ccc; /* Border diya gaya inputs ke aas paas */
+            border-radius: 5px; /* Rounded corners for inputs */
+            font-size: 16px; /* Text ka size input field mein */
+        }
+
+        button {
+            width: 100%; /* Button ko full width diya gaya */
+            padding: 10px; /* Button ke andar padding */
+            background-color: #28a745; /* Button ka color green */
+            color: white; /* Button ke text ka color white */
+            border: none; /* Default border hata diya gaya */
+            border-radius: 5px; /* Button ke corners rounded hain */
+            cursor: pointer; /* Button par hover karne par pointer cursor dikhega */
+            font-size: 16px; /* Button ka font size */
+        }
+
+        button:hover {
+            background-color: #218838; /* Button ko hover karne par thoda dark green color */
+        }
+
+        .checkbox-container {
+            display: flex; /* Checkbox aur label ko ek saath align karne ke liye flexbox */
+            align-items: center; /* Vertically center kar raha hai checkbox ko */
+        }
+
+        .checkbox-container input {
+            width: auto; /* Checkbox ko full width nahi chahiye */
+            margin-right: 10px; /* Checkbox aur label ke beech space diya gaya */
+        }
+
+        .error {
+            color: red; /* Error message ka color red */
+            font-size: 14px; /* Error message ka font size chhota */
+        }
+
+        /* Responsive design for smaller screens */
+        @media (max-width: 500px) {
+            .form-container {
+                padding: 15px; /* Chhote screens ke liye padding reduce kiya gaya */
+                width: 90%; /* Form ka width 90% kar diya gaya */
+            }
+
+            input, select, button {
+                font-size: 14px; /* Inputs aur buttons ka font size thoda chhota */
+                padding: 8px; /* Inputs aur buttons ki padding thodi chhoti ki gayi */
+            }
+
+            button {
+                padding: 12px; /* Button ki padding ko thoda zyada kiya gaya */
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Form container jo registration form ko hold karega -->
+    <div class="form-container">
+        <h2>Registration Form</h2>
+        <!-- Form element jo form ko submit karne ke liye use hoga -->
+        <form id="registrationForm">
+            <!-- Full Name field -->
+            <label for="name">Full Name:</label>
+            <input type="text" id="name" name="name">
+            <p class="error" id="nameError"></p> <!-- Error message for name -->
+
+            <!-- Email field -->
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email">
+            <p class="error" id="emailError"></p> <!-- Error message for email -->
+
+            <!-- Password field -->
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password">
+            <p class="error" id="passwordError"></p> <!-- Error message for password -->
+
+            <!-- Confirm password field -->
+            <label for="confirm-password">Confirm Password:</label>
+            <input type="password" id="confirm-password" name="confirm-password">
+            <p class="error" id="confirmPasswordError"></p> <!-- Error message for confirm password -->
+
+            <!-- Phone number field -->
+            <label for="phone">Phone Number:</label>
+            <input type="tel" id="phone" name="phone">
+            <p class="error" id="phoneError"></p> <!-- Error message for phone -->
+
+            <!-- Gender selection dropdown -->
+            <label for="gender">Gender:</label>
+            <select id="gender" name="gender">
+                <option value="">Select Gender</option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+                <option value="other">Other</option>
+            </select>
+            <p class="error" id="genderError"></p> <!-- Error message for gender -->
+
+            <!-- Checkbox for terms and conditions -->
+            <div class="checkbox-container">
+                <input type="checkbox" id="terms" name="terms">
+                <label for="terms">I agree to the terms and conditions</label>
+            </div>
+            <p class="error" id="termsError"></p> <!-- Error message for terms -->
+
+            <!-- Submit button for form -->
+            <button type="submit">Register</button>
+        </form>
+    </div>
+
+    <script>
+        // Function jo user ko success page par redirect karega registration ke baad
+        function redirectToSuccess(event) {
+            event.preventDefault(); // Form ke default submission ko rokh diya
+            window.location.href = 'registration-success.html'; // Success page pe redirect
+        }
+
+        // Form submit hone par event listener jo validation check karega
+        document.getElementById("registrationForm").addEventListener("submit", function(event) {
+            let isValid = true; // Form ki validity track karne ka flag
+
+            // Form ke input values ko get kiya
+            let name = document.getElementById("name").value.trim();
+            let email = document.getElementById("email").value.trim();
+            let password = document.getElementById("password").value;
+            let confirmPassword = document.getElementById("confirm-password").value;
+            let phone = document.getElementById("phone").value.trim();
+            let gender = document.getElementById("gender").value;
+            let terms = document.getElementById("terms").checked;
+
+            // Name validation
+            if (name === "") {
+                document.getElementById("nameError").textContent = "Full Name is required.";
+                isValid = false;
+            } else {
+                document.getElementById("nameError").textContent = "";
+            }
+
+            // Email validation
+            let emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+            if (!email.match(emailPattern)) {
+                document.getElementById("emailError").textContent = "Enter a valid email.";
+                isValid = false;
+            } else {
+                document.getElementById("emailError").textContent = "";
+            }
+
+            // Password validation
+            if (password.length < 6) {
+                document.getElementById("passwordError").textContent = "Password must be at least 6 characters.";
+                isValid = false;
+            } else {
+                document.getElementById("passwordError").textContent = "";
+            }
+
+            // Confirm password validation
+            if (confirmPassword !== password) {
+                document.getElementById("confirmPasswordError").textContent = "Passwords do not match.";
+                isValid = false;
+            } else {
+                document.getElementById("confirmPasswordError").textContent = "";
+            }
+
+            // Phone validation (should be a 10-digit number)
+            let phonePattern = /^[0-9]{10}$/;
+            if (!phone.match(phonePattern)) {
+                document.getElementById("phoneError").textContent = "Enter a valid 10-digit phone number.";
+                isValid = false;
+            } else {
+                document.getElementById("phoneError").textContent = "";
+            }
+
+            // Gender validation
+            if (gender === "") {
+                document.getElementById("genderError").textContent = "Please select your gender.";
+                isValid = false;
+            } else {
+                document.getElementById("genderError").textContent = "";
+            }
+
+            // Terms and conditions validation
+            if (!terms) {
+                document.getElementById("termsError").textContent = "You must agree to the terms.";
+                isValid = false;
+            } else {
+                document.getElementById("termsError").textContent = "";
+            }
+
+            // Agar sab valid ho to success page par redirect karenge
+            if (isValid) {
+                redirectToSuccess(event);
+            } else {
+                event.preventDefault(); // Agar validation fail ho, form submit nahi hoga
+            }
+        });
+    </script>    
+</body>
+</html>
