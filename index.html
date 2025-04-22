@@ -1,73 +1,67 @@
 <!DOCTYPE html>   
-<html lang="en">  <!-- Language set kiya as english -->
-<head>
-    <meta charset="UTF-8"> <!--UTF 8 use kiya jo har character and symbols ko support krti hai-->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!--Page responsive ho sab devices me uske liye ye kiya-->
-    <title>Budget Friendly Travel </title> <!--Ye borwser tab me likha hua aayega title-->
-    <link rel="stylesheet" href="style.css"> <!--ek alag se file bnayi hai, style.css krke to vaha se link kr diya isko-->
-</head>
-<body> <!--isme se hamara main content shuru ho jayega-->
-
-    <div class="header">Welcome to Travel Budget Planner Ltd.</div> <!--Page pr heading/banner ke liye use kiya, isme hamne ek class= header use
-                                                                     kiya hai iska mtlb hai ki jo hamne style.css me header ke andar likha hai vo styling hoyegi-->
-
-    <div class="navbar"> <!--isme navigation links hoyege and class = navbar ka mtlb same style jo hamne navbar me likha hua hai in style.css -->
-        <div class ="nav-item" onclick="redirectToPage('index.html')"> <!--class nav item vahi same ctyle css me jo likha hai and onclick mtlb click krne pr, 
-                                                                       redirectToPage ye funtion hai jo ham niche btayege ki is function me kya hoyega-->
-            <span>Home</span>
-        </div>
-        <div class="nav-item" onclick="checkLoginAndRedirect('planning.html')"> <!--is me jo checkLoginAndRedirect hai vo ek function hai jo ki niche btayege-->
-            <span>Plan your trip</span>
-        </div>
-        <div class="nav-item" onclick="checkLoginAndRedirect('recommendation.html')">
-            <span>Recommendations</span> 
-        </div>
-        <div class="nav-item" onclick="checkLoginAndRedirect('destination.html')">
-            <span>Destination</span> 
-        </div>
-        <div class="nav-item" onclick="checkLoginAndRedirect('budget.html')">
-            <span>Budget Estimator</span> 
-        </div>
-        <div class="nav-item" onclick="redirectToPage('contact.html')">
-            <span>Contact</span>
-        </div>
-        <div class="nav-item" onclick="redirectToPage('login.html')">
-            <span>Login</span>
-        </div>
-    </div>
-
-    <script>
-        function isUserLoggedIn() { 
-            return localStorage.getItem("isLoggedIn") === "true"; //is function se ham ye check kr rahe hai ki user login hai ya nhi 
-        }
-
-        function redirectToPage(page) {
-            window.location.href = page; //jo upr function the redirectToPage wala, uska hi ye code hai, 
-                                // jaise maine bola ki agr onclick (mtlb page pr click krege) to jo function ke ()isme likha hoga us page pr redirect kr jayege mtlb udher chal jayege 
-        }
-
-        function checkLoginAndRedirect(page) {
-            if (isUserLoggedIn()) {  
-                window.location.href = page; // ab isme isuserLoggedIn wala function call hua, to agr user login hai to page redirect hoga
-            } else {
-                alert("You must log in first!");
-                window.location.href = "login.html"; // aur agr user login nhi hai to page pr likha jayega you  must log in first, and login page pr chal jayega ye 
-            }
-        
-    }
-    </script>
-
-
-    <script>
-        // Redirect to intro page if the back button is pressed , agar back button press krte hai to intro page pr vapis aa jayege
-    window.onload = function () {
-        history.pushState(null, null, location.href);
-        window.onpopstate = function () {
-            location.href = 'index.html'; // Redirect to intro page
-        };
-    };
-    </script>
-    
-
-</body>
-</html>
+ <html lang="en">  <!-- Language set kiya as english -->
+ <head>
+     <meta charset="UTF-8"> <!--UTF 8 use kiya jo har character and symbols ko support krti hai-->
+     <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!--Page responsive ho sab devices me uske liye ye kiya-->
+     <title>Budget Friendly Travel </title> <!--Ye borwser tab me likha hua aayega title-->
+     <link rel="stylesheet" href="style.css"> <!--ek alag se file bnayi hai, style.css krke to vaha se link kr diya isko-->
+ </head>
+ <body> <!--isme se hamara main content shuru ho jayega-->
+ 
+     <div class="header">Welcome to Travel Budget Planner Ltd.</div> <!--Page pr heading/banner ke liye use kiya, isme hamne ek class= header use
+                                                                      kiya hai iska mtlb hai ki jo hamne style.css me header ke andar likha hai vo styling hoyegi-->
+ 
+     <div class="navbar"> <!--isme navigation links hoyege and class = navbar ka mtlb same style jo hamne navbar me likha hua hai in style.css -->
+         <div class ="nav-item" onclick="redirectToPage('index.html')"> <!--class nav item vahi same ctyle css me jo likha hai and onclick mtlb click krne pr, 
+                                                                        redirectToPage ye funtion hai jo ham niche btayege ki is function me kya hoyega-->
+             <span>Home</span>
+         </div>
+         <div class="nav-item" onclick="checkLoginAndRedirect('budgeting.html')"> <!--is me jo checkLoginAndRedirect hai vo ek function hai jo ki niche btayege-->
+             <span>Budgeting</span>
+         </div>
+         <div class="nav-item" onclick="checkLoginAndRedirect('cost.html')">
+             <span>Cost Estimator</span> 
+         </div>
+         <div class="nav-item" onclick="redirectToPage('contact.html')">
+             <span>Contact</span>
+         </div>
+         <div class="nav-item" onclick="redirectToPage('login.html')">
+             <span>Login</span>
+         </div>
+     </div>
+ 
+     <script>
+         function isUserLoggedIn() { 
+             return localStorage.getItem("isLoggedIn") === "true"; //is function se ham ye check kr rahe hai ki user login hai ya nhi 
+         }
+ 
+         function redirectToPage(page) {
+             window.location.href = page; //jo upr function the redirectToPage wala, uska hi ye code hai, 
+                                 // jaise maine bola ki agr onclick (mtlb page pr click krege) to jo function ke ()isme likha hoga us page pr redirect kr jayege mtlb udher chal jayege 
+         }
+ 
+         function checkLoginAndRedirect(page) {
+             if (isUserLoggedIn()) {  
+                 window.location.href = page; // ab isme isuserLoggedIn wala function call hua, to agr user login hai to page redirect hoga
+             } else {
+                 alert("You must log in first!");
+                 window.location.href = "login.html"; // aur agr user login nhi hai to page pr likha jayega you  must log in first, and login page pr chal jayega ye 
+             }
+         
+     }
+     </script>
+ 
+ 
+     <script>
+         // Redirect to intro page if the back button is pressed , agar back button press krte hai to intro page pr vapis aa jayege
+     window.onload = function () {
+         history.pushState(null, null, location.href);
+         window.onpopstate = function () {
+             location.href = 'index.html'; // Redirect to intro page
+         };
+     };
+     </script>
+     
+ 
+ </body>
+ </html>
